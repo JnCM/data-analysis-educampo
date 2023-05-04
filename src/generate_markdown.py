@@ -1,12 +1,9 @@
-import sys
+import os, sys, base64
 import pandas as pd
 import matplotlib.pyplot as plt
 from mdutils import MdUtils
-import base64
 
-if __name__ == "__main__":
-    mdFile = MdUtils(file_name='analise_cafe', title='Análise Exploratória do Café')
-    
+if __name__ == "__main__": 
     columns = [
         "6. Área em produção (hectare)",
         "16. Idade média das lavouras  (anos)",
@@ -18,10 +15,20 @@ if __name__ == "__main__":
         "70. Margem Líquida/saca (R$/saca)",
         "71. Lucro/saca (R$/saca)"
     ]
-
-    filename = sys.argv[1]
-    df = pd.read_excel(filename)
     group_column = "Região"
+
+    path = os.path.dirname(os.path.abspath(__file__))
+    data_filename = sys.argv[1]
+    md_filename = sys.argv[2]
+    try:
+        opt = int(sys.argv[3])
+    except:
+        opt = None
+
+    df = pd.read_excel(data_filename)
+    mdFile = MdUtils(file_name=md_filename, title='Análise Exploratória do Café')
+    
+    index = 0
     for column in columns:
         mdFile.new_header(2, column.split(". ")[1], add_table_of_contents="n")
         df_boxplot = df[[group_column, column]]
@@ -65,14 +72,18 @@ if __name__ == "__main__":
         table.extend(line_q3)
         table.extend(line_median)
         table.extend(line_mean)
-
-        # mdFile.new_line()
         mdFile.new_table(columns=4, rows=7, text=table, text_align='center')
-        img_name = "graph.png"
+        
+        img_name = os.path.join(path, "markdown\\imgs\\graph{}.png".format(index))
         plt.savefig(img_name)
-        image_file = open(img_name, "rb")
-        img_bytes = base64.b64encode(image_file.read()).decode("utf-8")
-        img_path = "data:image/png;base64," + img_bytes
+        if opt == 1:
+            img_path = "./imgs/graph{}.png".format(index)
+        else:
+            image_file = open(img_name, "rb")
+            img_bytes = base64.b64encode(image_file.read()).decode("utf-8")
+            img_path = "data:image/png;base64," + img_bytes
         mdFile.new_line(mdFile.new_inline_image(text="Boxplot por Região", path=img_path))
+        
+        index += 1
 
     mdFile.create_md_file()
