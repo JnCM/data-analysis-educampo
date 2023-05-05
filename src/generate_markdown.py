@@ -32,7 +32,7 @@ if __name__ == "__main__":
     for column in columns:
         mdFile.new_header(2, column.split(". ")[1], add_table_of_contents="n")
         df_boxplot = df[[group_column, column]]
-        boxplot = df_boxplot.boxplot(by=group_column, return_type='dict', showmeans=True)
+        boxplot = df_boxplot.boxplot(by=group_column, return_type='dict', showmeans=True, showfliers=False)
         
         bp_data = boxplot[column]
         means = [mean.get_ydata().tolist()[0] for mean in bp_data["means"]]
