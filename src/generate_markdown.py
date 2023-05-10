@@ -16,6 +16,8 @@ if __name__ == "__main__":
         "71. Lucro/saca (R$/saca)"
     ]
     group_column = "Região"
+    # group_column = "Tipo Colheita"
+    # group_column = "Sistema irrigação"
 
     path = os.path.dirname(os.path.abspath(__file__))
     data_filename = sys.argv[1]
@@ -28,6 +30,15 @@ if __name__ == "__main__":
     df = pd.read_excel(data_filename)
     mdFile = MdUtils(file_name=md_filename, title='Análise Exploratória do Café')
     
+    if group_column == "Tipo Colheita":
+        df[group_column].replace(["Colheita Manual: 100%"], 'Manual', inplace=True)
+        df.loc[df[group_column] != "Manual", group_column] = "Mecanizada"
+        df.to_excel("src/datasets/data_etl_colheita.xlsx")
+    elif group_column == "Sistema irrigação":
+        df[group_column].replace(["Não Irrigado: 100%"], 'Não-irrigado', inplace=True)
+        df.loc[df[group_column] != "Não-irrigado", group_column] = "Irrigado"
+        df.to_excel("src/datasets/data_etl_irrigacao.xlsx")
+
     index = 0
     for column in columns:
         mdFile.new_header(2, column.split(". ")[1], add_table_of_contents="n")
@@ -48,7 +59,19 @@ if __name__ == "__main__":
             quartis.append((q1, q2))
             limits.append((min_value, max_value))
         
-        table = ["", "Cerrado", "Matas", "Sul"]
+        if group_column == "Tipo Colheita":
+            table = ["", "Manual", "Mecanizada"]
+            idx_img = 1
+            num_columns = 3
+        elif group_column == "Sistema irrigação":
+            table = ["", "Irrigado", "Não-irrigado"]
+            idx_img = 2
+            num_columns = 3
+        else:
+            table = ["", "Cerrado", "Matas", "Sul"]
+            idx_img = 3
+            num_columns = 4
+
         line_min = ["Min."]
         line_max = ["Máx."]
         for pair in limits:
@@ -72,12 +95,12 @@ if __name__ == "__main__":
         table.extend(line_q3)
         table.extend(line_median)
         table.extend(line_mean)
-        mdFile.new_table(columns=4, rows=7, text=table, text_align='center')
+        mdFile.new_table(columns=num_columns, rows=7, text=table, text_align='center')
         
-        img_name = os.path.join(path, "markdown\\imgs\\graph{}.png".format(index))
+        img_name = os.path.join(path, "markdown\\imgs\\graph{}_{}.png".format(index, idx_img))
         plt.savefig(img_name)
         if opt == 1:
-            img_path = "./imgs/graph{}.png".format(index)
+            img_path = "./imgs/graph{}_{}.png".format(index, idx_img)
         else:
             image_file = open(img_name, "rb")
             img_bytes = base64.b64encode(image_file.read()).decode("utf-8")

@@ -13,7 +13,7 @@ Análise Exploratória do Café
 |Mediana|18.16|5.26|6.5|
 |Média|26.3789|9.0154|9.3698|
   
-![Boxplot por Região](./imgs/graph0.png)
+![Boxplot por Região](./imgs/graph0_3.png)
 ## Idade média das lavouras  (anos)
 
 ||Cerrado|Matas|Sul|
@@ -25,7 +25,7 @@ Análise Exploratória do Café
 |Mediana|11.5|18.5|17.78|
 |Média|13.4527|16.9685|19.9535|
   
-![Boxplot por Região](./imgs/graph1.png)
+![Boxplot por Região](./imgs/graph1_3.png)
 ## Número de plantas/área plantada (plantas/hectare)
 
 ||Cerrado|Matas|Sul|
@@ -37,7 +37,7 @@ Análise Exploratória do Café
 |Mediana|4000.0|5000.0|3759.4|
 |Média|4129.5678|5218.6173|3710.8099|
   
-![Boxplot por Região](./imgs/graph2.png)
+![Boxplot por Região](./imgs/graph2_3.png)
 ## Produtividade  (sacas/hectare)
 
 ||Cerrado|Matas|Sul|
@@ -49,7 +49,7 @@ Análise Exploratória do Café
 |Mediana|28.22|26.47|21.685|
 |Média|29.4266|28.3363|23.086|
   
-![Boxplot por Região](./imgs/graph3.png)
+![Boxplot por Região](./imgs/graph3_3.png)
 ## Margem líquida (R$/período)
 
 ||Cerrado|Matas|Sul|
@@ -61,7 +61,7 @@ Análise Exploratória do Café
 |Mediana|152726.55|55247.56|41385.02|
 |Média|344774.3055|120379.1389|82664.8296|
   
-![Boxplot por Região](./imgs/graph4.png)
+![Boxplot por Região](./imgs/graph4_3.png)
 ## Lucro (R$/período)
 
 ||Cerrado|Matas|Sul|
@@ -73,7 +73,7 @@ Análise Exploratória do Café
 |Mediana|120467.87|48788.8|30842.855|
 |Média|292624.0718|107331.4057|64653.9898|
   
-![Boxplot por Região](./imgs/graph5.png)
+![Boxplot por Região](./imgs/graph5_3.png)
 ## Preço médio de venda (R$/saca)
 
 ||Cerrado|Matas|Sul|
@@ -85,7 +85,7 @@ Análise Exploratória do Café
 |Mediana|1020.44|1071.34|1116.285|
 |Média|1027.4831|1082.1712|1133.1383|
   
-![Boxplot por Região](./imgs/graph6.png)
+![Boxplot por Região](./imgs/graph6_3.png)
 ## Margem Líquida/saca (R$/saca)
 
 ||Cerrado|Matas|Sul|
@@ -97,7 +97,7 @@ Análise Exploratória do Café
 |Mediana|359.8|403.88|359.34|
 |Média|234.1152|365.9812|200.213|
   
-![Boxplot por Região](./imgs/graph7.png)
+![Boxplot por Região](./imgs/graph7_3.png)
 ## Lucro/saca (R$/saca)
 
 ||Cerrado|Matas|Sul|
@@ -109,4 +109,4 @@ Análise Exploratória do Café
 |Mediana|292.84|345.12|272.455|
 |Média|143.3873|300.6138|83.4547|
   
-![Boxplot por Região](./imgs/graph8.png)
+![Boxplot por Região](./imgs/graph8_3.png)
